@@ -1,43 +1,39 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "defaultProject": "test-client",
+  "cli": { "defaultCollection": "@nrwl/react" },
+  "defaultProject": "test-react",
   "generators": {
     "@nrwl/react": {
       "application": {
-        "style": "@emotion/styled",
+        "style": "styled-components",
         "linter": "eslint",
         "babel": true
       },
-      "component": {
-        "style": "@emotion/styled"
-      },
-      "library": {
-        "style": "@emotion/styled",
-        "linter": "eslint"
-      }
+      "component": { "style": "styled-components" },
+      "library": { "style": "styled-components", "linter": "eslint" }
+    },
+    "@nrwl/next": {
+      "application": { "style": "styled-components", "linter": "eslint" }
     }
   },
   "projects": {
-    "test-client": {
-      "root": "apps/test-client",
-      "sourceRoot": "apps/test-client/src",
+    "test-react": {
+      "root": "apps/test-react",
+      "sourceRoot": "apps/test-react/src",
       "projectType": "application",
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/test-client",
-            "index": "apps/test-client/src/index.html",
-            "main": "apps/test-client/src/main.tsx",
-            "polyfills": "apps/test-client/src/polyfills.ts",
-            "tsConfig": "apps/test-client/tsconfig.app.json",
+            "outputPath": "dist/apps/test-react",
+            "index": "apps/test-react/src/index.html",
+            "main": "apps/test-react/src/main.tsx",
+            "polyfills": "apps/test-react/src/polyfills.ts",
+            "tsConfig": "apps/test-react/tsconfig.app.json",
             "assets": [
-              "apps/test-client/src/favicon.ico",
-              "apps/test-client/src/assets"
+              "apps/test-react/src/favicon.ico",
+              "apps/test-react/src/assets"
             ],
             "styles": [],
             "scripts": [],
@@ -47,8 +43,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/test-client/src/environments/environment.ts",
-                  "with": "apps/test-client/src/environments/environment.prod.ts"
+                  "replace": "apps/test-react/src/environments/environment.ts",
+                  "with": "apps/test-react/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -70,53 +66,160 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "test-client:build"
-          },
+          "options": { "buildTarget": "test-react:build" },
           "configurations": {
-            "production": {
-              "buildTarget": "test-client:build:production"
-            }
+            "production": { "buildTarget": "test-react:build:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/test-client/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["apps/test-react/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/test-client"],
+          "outputs": ["coverage/apps/test-react"],
           "options": {
-            "jestConfig": "apps/test-client/jest.config.js",
+            "jestConfig": "apps/test-react/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "test-client-e2e": {
-      "root": "apps/test-client-e2e",
-      "sourceRoot": "apps/test-client-e2e/src",
+    "test-react-e2e": {
+      "root": "apps/test-react-e2e",
+      "sourceRoot": "apps/test-react-e2e/src",
       "projectType": "application",
       "targets": {
         "e2e": {
           "executor": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/test-client-e2e/cypress.json",
-            "tsConfig": "apps/test-client-e2e/tsconfig.e2e.json",
-            "devServerTarget": "test-client:serve"
+            "cypressConfig": "apps/test-react-e2e/cypress.json",
+            "tsConfig": "apps/test-react-e2e/tsconfig.e2e.json",
+            "devServerTarget": "test-react:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "test-client:serve:production"
-            }
+            "production": { "devServerTarget": "test-react:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/test-client-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["apps/test-react-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "test-next": {
+      "root": "apps/test-next",
+      "sourceRoot": "apps/test-next/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/test-next",
+            "index": "apps/test-next/src/index.html",
+            "main": "apps/test-next/src/main.tsx",
+            "polyfills": "apps/test-next/src/polyfills.ts",
+            "tsConfig": "apps/test-next/tsconfig.app.json",
+            "assets": [
+              "apps/test-next/src/favicon.ico",
+              "apps/test-next/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/test-next/src/environments/environment.ts",
+                  "with": "apps/test-next/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": { "buildTarget": "test-next:build" },
+          "configurations": {
+            "production": { "buildTarget": "test-next:build:production" }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/test-next/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/test-next"],
+          "options": {
+            "jestConfig": "apps/test-next/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "test-next-e2e": {
+      "root": "apps/test-next-e2e",
+      "sourceRoot": "apps/test-next-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/test-next-e2e/cypress.json",
+            "tsConfig": "apps/test-next-e2e/tsconfig.e2e.json",
+            "devServerTarget": "test-next:serve"
+          },
+          "configurations": {
+            "production": { "devServerTarget": "test-next:serve:production" }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/test-next-e2e/**/*.{js,ts}"] }
+        }
+      }
+    },
+    "client-lib-ui": {
+      "root": "libs/client-lib/ui",
+      "sourceRoot": "libs/client-lib/ui/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client-lib/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client-lib/ui"],
+          "options": {
+            "jestConfig": "libs/client-lib/ui/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
