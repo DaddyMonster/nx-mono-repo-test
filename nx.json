@@ -25,6 +25,11 @@
     "test-react-e2e": { "tags": [], "implicitDependencies": ["test-react"] },
     "test-next": { "tags": [] },
     "test-next-e2e": { "tags": [], "implicitDependencies": ["test-next"] },
-    "client-lib-ui": { "tags": [] }
+    "client-lib-ui": { "tags": [] },
+    "css-test": { "tags": [] },
+    "styles-theme": { "tags": [] },
+    "client-lib-todos": { "tags": [] },
+    "test-srv": { "tags": [] },
+    "test-nest": { "tags": [] }
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-
 import styled from 'styled-components';
+import './buttons.css';
 
 /* eslint-disable-next-line */
 export interface ButtonsProps {}
@@ -11,7 +11,7 @@ const StyledButtons = styled.div`
 
 export function Buttons(props: ButtonsProps) {
   return (
-    <StyledButtons>
+    <StyledButtons className="btn">
       <h1>Welcome to buttons!</h1>
     </StyledButtons>
   );

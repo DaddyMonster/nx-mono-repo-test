@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Buttons } from '@nx-test/client-lib/ui';
+import './styles/global.css';
 
 const Root = styled.div(({ theme }) => ({
   width: '100vw',
@@ -15,9 +15,13 @@ const Root = styled.div(({ theme }) => ({
 export function App() {
   return (
     <Root>
-      <Buttons></Buttons>
+      <SomeText className="text-prime">TAILWIND TEST</SomeText>
     </Root>
   );
 }
 
 export default App;
+
+const SomeText = styled.span({
+  padding: 30,
+});
