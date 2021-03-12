@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "types": ["./libs/styles/theme/src/lib/themes/typed/overrides.d.ts"],
+    "types": ["libs/styles/theme/src/lib/themes/typed/overrides.d.ts"],
     "paths": {
       "@nx-test/client-lib/ui": ["libs/client-lib/ui/src/index.ts"],
       "@nx-test/css-test": ["libs/css-test/src/index.ts"],
@@ -22,7 +22,7 @@
       "@nx-test/client-lib/todos": ["libs/client-lib/todos/src/index.ts"]
     }
   },
-  "files": ["./libs/styles/theme/src/lib/themes/typed/overrides.d.ts"],
+  "files": ["libs/styles/theme/src/lib/themes/typed/overrides.d.ts"],
   "include": [],
   "exclude": ["node_modules", "tmp"]
 }
