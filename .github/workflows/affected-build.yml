@@ -7,30 +7,10 @@ on:
 
 env:
   BEFORE_SHA: ${{ github.event.before }}
-  GC_PROJECT_ID: ${{ secrets.GC_PROJECT_ID }}
-  GC_REGION: ${{ secrets.GC_REGION }}
   # gcr.io 리포 이름
 
 jobs:
-  gc_auth:
-    name: GC Authentication
-    runs-on: ubuntu-latest
-    steps:
-      # GC 인증
-      - uses: google-github-actions/setup-gcloud@v0.2.0
-        with:
-          project_id: ${{ secrets.GC_PROJECT_ID }}
-          service_account_key: ${{ secrets.GC_SERVICE_ACCOUNT }}
-          service_account_email: ${{ secrets.GC_SERVICE_ACCOUNT_EMAIL }}
-
-      # 도커 사용 설정
-      - name: Enable the necessary APIs and enable docker auth
-        run: |-
-          gcloud services enable containerregistry.googleapis.com
-          gcloud services enable run.googleapis.com
-          gcloud --quiet auth configure-docker
   affected_build:
-    needs: gc_auth
     name: build only affected apps
     runs-on: ubuntu-latest
     steps:
@@ -47,8 +27,12 @@ jobs:
       # Nx 사용을 위한 디펜던시 설치
       - name: Install Dependency
         run: npm install
+
+      # GC_AUTH
+      - name: GC_AUTH
+        uses: ./.github/actions
+
       # Affected build
       - name: Run Affected Build and Deploy
         shell: bash
         run: npm run affected:prod-build -- --base=$BEFORE_SHA
-        
