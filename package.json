@@ -16,7 +16,7 @@
     "affected:test": "nx affected:test",
     "affected:lint": "nx affected:lint",
     "affected:dep-graph": "nx affected:dep-graph",
-    "affected:prod-build": "nx affected:prod-build",
+    "affected:prod-build": "nx affected:prod-build --target=prod-build",
     "affected": "nx affected",
     "format": "nx format:write",
     "format:write": "nx format:write",
