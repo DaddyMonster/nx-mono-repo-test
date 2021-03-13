@@ -1,8 +1,6 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
+  "cli": { "defaultCollection": "@nrwl/react" },
   "defaultProject": "test-react",
   "generators": {
     "@nrwl/react": {
@@ -11,19 +9,11 @@
         "linter": "eslint",
         "babel": true
       },
-      "component": {
-        "style": "styled-components"
-      },
-      "library": {
-        "style": "styled-components",
-        "linter": "eslint"
-      }
+      "component": { "style": "styled-components" },
+      "library": { "style": "styled-components", "linter": "eslint" }
     },
     "@nrwl/next": {
-      "application": {
-        "style": "styled-components",
-        "linter": "eslint"
-      }
+      "application": { "style": "styled-components", "linter": "eslint" }
     }
   },
   "projects": {
@@ -81,9 +71,7 @@
             "proxyConfig": "apps/test-react/proxy.conf.json"
           },
           "configurations": {
-            "production": {
-              "buildTarget": "test-react:build:production"
-            }
+            "production": { "buildTarget": "test-react:build:production" }
           }
         },
         "lint": {
@@ -115,116 +103,13 @@
             "devServerTarget": "test-react:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "test-react:serve:production"
-            }
+            "production": { "devServerTarget": "test-react:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/test-react-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "test-next": {
-      "root": "apps/test-next",
-      "sourceRoot": "apps/test-next/src",
-      "projectType": "application",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/test-next",
-            "index": "apps/test-next/src/index.html",
-            "main": "apps/test-next/src/main.tsx",
-            "polyfills": "apps/test-next/src/polyfills.ts",
-            "tsConfig": "apps/test-next/tsconfig.app.json",
-            "assets": [
-              "apps/test-next/src/favicon.ico",
-              "apps/test-next/src/assets"
-            ],
-            "styles": ["./global/css/fonts.css"],
-            "scripts": [],
-            "webpackConfig": "react-tailwind.webpack.config.js"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/test-next/src/environments/environment.ts",
-                  "with": "apps/test-next/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "test-next:build",
-            "proxyConfig": "apps/test-next/proxy.conf.json"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "test-next:build:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/test-next/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/test-next"],
-          "options": {
-            "jestConfig": "apps/test-next/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "test-next-e2e": {
-      "root": "apps/test-next-e2e",
-      "sourceRoot": "apps/test-next-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/test-next-e2e/cypress.json",
-            "tsConfig": "apps/test-next-e2e/tsconfig.e2e.json",
-            "devServerTarget": "test-next:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "test-next:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/test-next-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -287,13 +172,7 @@
             "external": ["react", "react-dom", "react-is", "styled-components"],
             "babelConfig": "@nrwl/react/plugins/bundle-babel",
             "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
-            "assets": [
-              {
-                "glob": "README.md",
-                "input": ".",
-                "output": "."
-              }
-            ]
+            "assets": [{ "glob": "README.md", "input": ".", "output": "." }]
           }
         },
         "lint": {
@@ -364,15 +243,11 @@
         },
         "serve": {
           "executor": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "test-srv:build"
-          }
+          "options": { "buildTarget": "test-srv:build" }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/test-srv/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["apps/test-srv/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -416,15 +291,11 @@
         },
         "serve": {
           "executor": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "test-nest:build"
-          }
+          "options": { "buildTarget": "test-nest:build" }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/test-nest/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["apps/test-nest/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -433,6 +304,83 @@
             "jestConfig": "apps/test-nest/jest.config.js",
             "passWithNoTests": true
           }
+        }
+      }
+    },
+    "test-next": {
+      "root": "apps/test-next",
+      "sourceRoot": "apps/test-next",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "root": "apps/test-next",
+            "outputPath": "dist/apps/test-next"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "test-next:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "test-next:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": { "buildTarget": "test-next:build:production" }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/test-next"],
+          "options": {
+            "jestConfig": "apps/test-next/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/test-next/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "cd dist/apps/test-next && cp ../../../apps/test-next/Dockerfile . && docker build . -t test-next:latest"
+          }
+        }
+      }
+    },
+    "test-next-e2e": {
+      "root": "apps/test-next-e2e",
+      "sourceRoot": "apps/test-next-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/test-next-e2e/cypress.json",
+            "tsConfig": "apps/test-next-e2e/tsconfig.e2e.json",
+            "devServerTarget": "test-next:serve"
+          },
+          "configurations": {
+            "production": { "devServerTarget": "test-next:serve:production" }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/test-next-e2e/**/*.{js,ts}"] }
         }
       }
     }

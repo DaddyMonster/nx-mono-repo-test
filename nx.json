@@ -23,13 +23,13 @@
   "projects": {
     "test-react": { "tags": [] },
     "test-react-e2e": { "tags": [], "implicitDependencies": ["test-react"] },
-    "test-next": { "tags": [] },
-    "test-next-e2e": { "tags": [], "implicitDependencies": ["test-next"] },
     "client-lib-ui": { "tags": [] },
     "css-test": { "tags": [] },
     "styles-theme": { "tags": [] },
     "client-lib-todos": { "tags": [] },
     "test-srv": { "tags": [] },
-    "test-nest": { "tags": [] }
+    "test-nest": { "tags": [] },
+    "test-next": { "tags": [] },
+    "test-next-e2e": { "tags": [], "implicitDependencies": ["test-next"] }
   }
 }

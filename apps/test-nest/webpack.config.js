@@ -3,6 +3,8 @@ module.exports = (config, _context) => {
     r.loader.includes('ts-loader')
   );
 
+  process.env.NODE_ENV = _context.mode;
+
   if (tsLoader) {
     tsLoader.options.transpileOnly = false;
     tsLoader.options.getCustomTransformers = (program) => {

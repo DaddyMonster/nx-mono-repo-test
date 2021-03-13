@@ -17,10 +17,11 @@ import { BookPurchaseModule } from './book-purchase/book-purchase.module';
       database: process.env.PG_DATABASE,
       synchronize: true,
       autoLoadEntities: true,
+      logging: true,
     }),
 
     GraphQLModule.forRoot({
-      autoSchemaFile: join(process.cwd(), 'src/schmea.gql'),
+      autoSchemaFile: join(process.cwd(), 'apps/test-nest/src/schmea.gql'),
       sortSchema: true,
       context: ({ req, res }) => ({ req, res }),
     }),
