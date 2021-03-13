@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "files": ["./src/environments/env.d.ts"],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}

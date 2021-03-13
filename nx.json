@@ -1,0 +1,35 @@
+{
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "nx-test",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "ZjkzNDA5OGQtOWJjNi00MzI2LThjMDUtYzc2YTgyM2Q3NGE1fHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "projects": {
+    "test-react": { "tags": [] },
+    "test-react-e2e": { "tags": [], "implicitDependencies": ["test-react"] },
+    "client-lib-ui": { "tags": [] },
+    "css-test": { "tags": [] },
+    "styles-theme": { "tags": [] },
+    "client-lib-todos": { "tags": [] },
+    "test-srv": { "tags": [] },
+    "test-nest": { "tags": [] },
+    "test-next": { "tags": [] },
+    "test-next-e2e": { "tags": [], "implicitDependencies": ["test-next"] }
+  }
+}

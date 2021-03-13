@@ -1,0 +1,81 @@
+import { Theme } from '@material-ui/core';
+import React from 'react';
+import { TodoItem, TodoItemProps, OnCompleteChange } from './todo-item';
+import styled from 'styled-components';
+
+export interface ClientLibTodosProps {
+  itemList: TodoItemProps[];
+  onCompleteChange: OnCompleteChange;
+}
+
+export function ClientLibTodos({
+  itemList,
+  onCompleteChange,
+}: ClientLibTodosProps) {
+  return (
+    <div className="w-full h-screen flex justify-center items-center">
+      <Root>
+        {itemList.map((x) => (
+          <TodoItem {...x} onCompleteChange={onCompleteChange} />
+        ))}
+      </Root>
+    </div>
+  );
+}
+
+const Root = styled.span(({ theme }) => ({
+  width: 300,
+  height: 500,
+  dislay: 'flex',
+  flexDirection: 'column',
+}));
+
+export default ClientLibTodos;
+
+
+import { Checkbox, Paper, Typography } from '@material-ui/core';
+import React from 'react';
+import styled from 'styled-components';
+
+export interface TodoItemProps {
+  label: string;
+  complete: boolean;
+  index: number;
+}
+
+export type OnCompleteChange = (index: number, value: boolean) => void;
+
+interface Props extends TodoItemProps {
+  onCompleteChange: OnCompleteChange;
+}
+
+export const TodoItem = ({
+  complete,
+  label,
+  onCompleteChange,
+  index,
+}: Props) => {
+  return (
+    <Root>
+      <Typography>{label}</Typography>
+      <Checkbox
+        value={complete}
+        onChange={(_, checked) => onCompleteChange(index, checked)}
+      />
+    </Root>
+  );
+};
+
+const Root = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom: theme.spacing(2),
+}));
+
+
+
+
+
+ "../../styles/theme/src/lib/themes/typed/overrides.d.ts"

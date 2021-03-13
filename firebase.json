@@ -1,0 +1,15 @@
+{
+  "hosting": {
+    "public": "firebase",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "test-next",
+          "region": "asia-northeast3"
+        }
+      }
+    ]
+  }
+}
