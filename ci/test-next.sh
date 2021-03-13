@@ -21,5 +21,5 @@ docker tag $NEXT_CONTAINER_NAME $GCR_PATH
 docker push $GCR_PATH
 
 echo "DOCKER IMAGE PUSHED TO REPO"
-
+gcloud components install beta --quiet
 gcloud beta run deploy $SERVICE --image $GCR_PATH --project $GC_PROJECT_ID --platform managed --region $REGION --allow-unauthenticated

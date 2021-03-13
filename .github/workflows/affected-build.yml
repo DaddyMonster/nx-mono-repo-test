@@ -30,7 +30,7 @@ jobs:
 
       # GC_AUTH
       - name: GC_AUTH
-        uses: ./.github/actions
+        uses: ./.github/actions/gc-auth
 
       # Affected build
       - name: Run Affected Build and Deploy
