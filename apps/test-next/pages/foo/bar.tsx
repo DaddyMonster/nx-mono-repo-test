@@ -12,6 +12,7 @@ const Bar = () => {
       <Typography>FOO BAZ HAS CHANGED 6</Typography>
       <Typography>FOO BAZ HAS CHANGED 7</Typography>
       <Typography>FOO BAZ HAS CHANGED 8</Typography>
+      <Typography>FOO BAZ HAS CHANGED 10</Typography>
     </div>
   );
 };
