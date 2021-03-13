@@ -3,9 +3,10 @@ import React from 'react';
 
 const Bar = () => {
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="w-full h-screen flex flex-col justify-center items-center">
       <Typography>THIS IS BAR PAGE!</Typography>
       <Typography>FOO BAZ HAS CHANGED 2</Typography>
+      <Typography>FOO BAZ HAS CHANGED 3</Typography>
     </div>
   );
 };
