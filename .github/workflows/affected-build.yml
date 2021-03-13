@@ -7,6 +7,10 @@ on:
 
 env:
   BEFORE_SHA: ${{ github.event.before }}
+  GC_PROJECT_ID: ${{ secrets.GC_PROJECT_ID }}
+  GC_REGION: ${{ secrets.GC_REGION }}
+  GC_SERVICE_ACCOUNT: ${{ secrets.GC_SERVICE_ACCOUNT }}
+  GC_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GC_SERVICE_ACCOUNT_EMAIL }}
   # gcr.io 리포 이름
 
 jobs:
