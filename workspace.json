@@ -315,25 +315,10 @@
         "prod-build": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": [
-              "nx run test-next:pre-build && nx run test-next:build --prod && nx run test-next:post-build &&  nx run test-next:deploy"
-            ]
+            "commands": ["bash ci/test-next.sh"]
           }
         },
-        "pre-build": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "rm -rf dist/apps/test-next"
-          }
-        },
-        "post-build": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": [
-              "cd dist/apps/test-next && npx add-dependencies graphql @emotion/react @emotion/styled"
-            ]
-          }
-        },
+
         "build": {
           "executor": "@nrwl/next:build",
           "outputs": ["{options.outputPath}"],
@@ -374,12 +359,6 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/test-next/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "deploy": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": ["bash deploy.sh"]
           }
         }
       }
