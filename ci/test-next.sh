@@ -2,7 +2,7 @@
 
 nx run test-next:build --prod
 cd dist/apps/test-next
-npx add-dependencies graphql @emotion/react @emotion/styled
+npx add-dependencies graphql @emotion/react @emotion/styled tailwindcss
 NEXT_CONTAINER_NAME=test-next
 GCR_PATH=gcr.io/$GC_PROJECT_ID/$NEXT_CONTAINER_NAME:latest
 REGION=asia-northeast3
