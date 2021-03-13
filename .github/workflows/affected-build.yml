@@ -50,5 +50,5 @@ jobs:
       # Affected build
       - name: Run Affected Build and Deploy
         shell: bash
-        run: npm run affected:prod-build -- --base=$BEFORE_SHA
+        run: npm run nx affected:prod-build -- --base=$BEFORE_SHA
         
