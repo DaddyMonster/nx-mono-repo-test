@@ -6,6 +6,9 @@ import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { UserModule } from './user/user.module';
 import { BookPurchaseModule } from './book-purchase/book-purchase.module';
+import { GLOBAL_PREFIX } from '../environments/env';
+import { ConnectionModule } from './connection/connection.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -24,11 +27,13 @@ import { BookPurchaseModule } from './book-purchase/book-purchase.module';
       autoSchemaFile: join(process.cwd(), 'apps/test-nest/src/schmea.gql'),
       sortSchema: true,
       context: ({ req, res }) => ({ req, res }),
+      path: `/${GLOBAL_PREFIX}/graphql`,
     }),
     UserModule,
     BookModule,
     AuthorModule,
     BookPurchaseModule,
+    ConnectionModule,
   ],
 })
 export class AppModule {}

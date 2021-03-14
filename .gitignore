@@ -42,9 +42,14 @@ Thumbs.db
 
 #ENV
 .env
+.env.prod
 .env.production
 .env.development
+
+#CREDENTIAL
+nx-test-db-cred.json
 
 #Shell Script
 inject_env.sh
 deploy.sh
+

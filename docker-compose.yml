@@ -1,0 +1,20 @@
+version: '3'
+services:
+  cloudsql-proxy:
+    container_name: cloudsql-proxy
+    image: gcr.io/cloudsql-docker/gce-proxy:1.16
+    command: /cloud_sql_proxy --dir=/cloudsql -instances=engspark-304906:asia-northeast3:engspark=tcp:0.0.0.0:5432 -credential_file=./secrets/cloudsql/gc_cred.json
+    ports:
+      - 5432:5432
+    volumes:
+      - ./nx-test-db-cred.json:/secrets/cloudsql/gc_cred.json
+    restart: always
+
+  nest-app:
+    container_name: test-nest
+    image: test-nest-1:latest
+    ports:
+      - 3333:3333
+    env_file:
+      - ./apps/test-nest/.env.prod
+    restart: always

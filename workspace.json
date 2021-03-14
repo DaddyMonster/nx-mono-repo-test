@@ -273,7 +273,7 @@
             "main": "apps/test-nest/src/main.ts",
             "tsConfig": "apps/test-nest/tsconfig.app.json",
             "assets": ["apps/test-nest/src/assets"],
-            "webpackConfig": "apps/test-nest/webpack.config.js"
+            "webpackConfig": "./apps/test-nest/webpack.config.js"
           },
           "configurations": {
             "production": {
