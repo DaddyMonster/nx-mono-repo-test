@@ -1,8 +1,9 @@
 name: GC_AUTH
 runs: 
-  uses: google-github-actions/setup-gcloud@v0.2.0
-  with:
-    project_id: ${{ secrets.GC_PROJECT_ID }}
-    service_account_key: ${{ secrets.GC_SERVICE_ACCOUNT }}
-    service_account_email: ${{ secrets.GC_SERVICE_ACCOUNT_EMAIL }}
+  steps:
+  - uses: google-github-actions/setup-gcloud@v0.2.0
+    with:
+      project_id: ${{ secrets.GC_PROJECT_ID }}
+      service_account_key: ${{ secrets.GC_SERVICE_ACCOUNT }}
+      service_account_email: ${{ secrets.GC_SERVICE_ACCOUNT_EMAIL }}
   
