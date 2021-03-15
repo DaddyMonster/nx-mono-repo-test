@@ -1,7 +1,9 @@
 #!/bin/sh
 
 nx run test-nest:build --prod
+
 cd dist/apps/test-nest
+echo $(ls)
 npx add-dependencies graphql reflect-metadata pg @nestjs/core @nestjs/platform-express apollo-server-express rxjs
 
 
