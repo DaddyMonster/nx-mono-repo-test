@@ -39,6 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: check_if_package_modified
     steps:
+      - uses: actions/checkout@v2
       - name: display pwd
         run: echo $PWD
       - name: Package Modification logger
@@ -46,7 +47,7 @@ jobs:
       - name: Build and deploy Base-Docker-Img at root directory only when package.json has changed!
         if: needs.check_if_package_modified.outputs.modified == 'true'
         shell: bash
-        run: /home/runner/work/nx-mono-repo-test/nx-mono-repo-test/ci/base-img.sh
+        run: ./ci/base-img.sh
       - name: roll up
         run: echo DONE
   affected_build:
