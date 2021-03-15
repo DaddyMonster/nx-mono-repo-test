@@ -1,0 +1,18 @@
+ check_if_package_modified:
+    name: Detact Package.json modification and rebuild base docker img
+    runs-on: ubuntu-latest
+    outputs:
+      modified: ${{ steps.check.outputs.changed }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: check if the package.json file has changed!
+        id: check
+        uses: EndBug/version-check@v1
+        with:
+          diff-search: true
+      - name: Log when changed
+        if: steps.check.outputs.changed == 'true'
+        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}!"'

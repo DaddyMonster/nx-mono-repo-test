@@ -15,45 +15,8 @@ env:
   # gcr.io 리포 이름
 
 jobs:
-  check_if_package_modified:
-    name: Detact Package.json modification and rebuild base docker img
-    runs-on: ubuntu-latest
-    outputs:
-      modified: ${{ steps.check.outputs.changed }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: check if the package.json file has changed!
-        id: check
-        uses: EndBug/version-check@v1
-        with:
-          diff-search: true
-      - name: Log when changed
-        if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}!"'
-
-  deploy_base_img:
-    name: Build and deloy base docker img with all dependencies pre-installed
-    runs-on: ubuntu-latest
-    needs: check_if_package_modified
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Package Modification logger
-        run: echo ${{ needs.check_if_package_modified.outputs.modified }}
-
-      - run: chmod +x ./ci/base-img.sh
-      - name: BUILD AND PUSH BASE DOCKER IMG
-        shell: bash
-        if: needs.check_if_package_modified.outputs.modified == 'true'
-        run: ./ci/base-img.sh
-
   affected_build:
     name: build only affected apps
-    needs: deploy_base_img
     runs-on: ubuntu-latest
     container:
       image: engsparkapp/nx-test-base:latest
@@ -71,6 +34,7 @@ jobs:
           project_id: ${{ secrets.GC_PROJECT_ID }}
           service_account_key: ${{ secrets.GC_SERVICE_ACCOUNT }}
           service_account_email: ${{ secrets.GC_SERVICE_ACCOUNT_EMAIL }}
+      # 도커, 클라우드 런 사용 설정
       - name: Enable the necessary APIs and enable docker auth
         shell: bash
         run: |-
@@ -83,11 +47,22 @@ jobs:
         with:
           node-version: 12.x
       - run: git fetch origin master
-      # Nx 사용을 위한 디펜던시 설치
-      - name: Install Dependency
-        run: npm install
 
-      # 도커 사용 설정
+      # Nx 사용을 위한 디펜던시 설치 => 캐싱
+      - name: Cache node modules
+        id: node-cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install Dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm install
 
       # Affected build
       - name: Run Affected Build and Deploy
