@@ -265,6 +265,12 @@
       "projectType": "application",
       "prefix": "test-nest",
       "targets": {
+        "prod-build": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["bash ci/test-nest.sh"]
+          }
+        },
         "build": {
           "executor": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],

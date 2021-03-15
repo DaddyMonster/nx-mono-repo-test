@@ -15,29 +15,9 @@ env:
   # gcr.io 리포 이름
 
 jobs:
-  check_if_package_modified:
-    name: Detact Package.json modification and rebuild base docker img
-    runs-on: ubuntu-latest
-    steps:
-      - uses: MontyD/package-json-updated-action
-      - id: check
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  deploy_base_img:
-    name: Build and deloy base docker img with all dependencies pre-installed
-    runs-on: ubuntu-latest
-    needs: check_if_package_modified
-    steps:
-      - name: Build and deploy Base-Docker-Img at root directory only when package.json has changed!
-        if: needs.check_if_package_modified.check.outputs.files_changed == 'true'
-        run: bash ./ci/base-img.sh
-
   affected_build:
     name: build only affected apps
-    needs: deploy_base_img
     runs-on: ubuntu-latest
-    container: gcr.io/nx-test-307509/nx-base-img:latest
     steps:
       # Nx git diff 사용으로 affted 사용을 위한 git history fetching
       - name: Checkout

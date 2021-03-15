@@ -1,0 +1,17 @@
+#!/bin/sh
+echo BASE IMG BUILD SCRIPT START
+
+ls
+
+BASE_CONTAINER_NAME=nx-base-img
+GCR_PATH=gcr.io/$GC_PROJECT_ID/$BASE_CONTAINER_NAME:latest
+SERVICE=$BASE_CONTAINER_NAME
+
+echo ${GC_PROJECT_ID}
+echo ${BASE_CONTAINER_NAME}
+echo ${GCR_PATH}
+
+docker build . -t $BASE_CONTAINER_NAME
+docker tag $BASE_CONTAINER_NAME $GCR_PATH
+docker push $GCR_PATH
+
