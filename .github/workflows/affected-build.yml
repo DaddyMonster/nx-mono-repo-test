@@ -19,10 +19,13 @@ jobs:
     name: Detact Package.json modification and rebuild base docker img
     runs-on: ubuntu-latest
     steps:
-      - uses: MontyD/package-json-updated-action@1.0.1
+      - name: check if the package.json file has changed!
         id: check
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: EndBug/version-check@v1
+
+      - name: Log when changed
+        if: steps.check.outputs.changed == 'true'
+        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
 
   deploy_base_img:
     name: Build and deloy base docker img with all dependencies pre-installed
@@ -33,7 +36,7 @@ jobs:
         if: needs.check_if_package_modified.check.outputs.files_changed == 'true'
         run: bash ./ci/base-img.sh
       - name: roll up
-        run : echo DONE
+        run: echo DONE
   affected_build:
     name: build only affected apps
     needs: deploy_base_img
