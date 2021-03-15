@@ -30,6 +30,10 @@
     "test-srv": { "tags": [] },
     "test-nest": { "tags": [] },
     "test-next": { "tags": [] },
-    "test-next-e2e": { "tags": [], "implicitDependencies": ["test-next"] }
+    "test-next-e2e": { "tags": [], "implicitDependencies": ["test-next"] },
+    "client-lib-todos-e2e": {
+      "tags": [],
+      "implicitDependencies": ["client-lib-todos"]
+    }
   }
 }

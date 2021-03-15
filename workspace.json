@@ -209,6 +209,25 @@
             "jestConfig": "libs/client-lib/todos/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": { "configFolder": "libs/client-lib/todos/.storybook" }
+          },
+          "configurations": { "ci": { "quiet": true } }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/client-lib-todos",
+            "config": { "configFolder": "libs/client-lib/todos/.storybook" }
+          },
+          "configurations": { "ci": { "quiet": true } }
         }
       }
     },
@@ -267,9 +286,7 @@
       "targets": {
         "prod-build": {
           "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": ["bash ci/test-nest.sh"]
-          }
+          "options": { "commands": ["bash ci/test-nest.sh"] }
         },
         "build": {
           "executor": "@nrwl/node:build",
@@ -321,11 +338,8 @@
       "targets": {
         "prod-build": {
           "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": ["bash ci/test-next.sh"]
-          }
+          "options": { "commands": ["bash ci/test-next.sh"] }
         },
-
         "build": {
           "executor": "@nrwl/next:build",
           "outputs": ["{options.outputPath}"],
@@ -333,20 +347,21 @@
             "root": "apps/test-next",
             "outputPath": "dist/apps/test-next"
           },
-          "configurations": {
-            "production": {}
-          }
+          "configurations": { "production": {} }
         },
         "serve": {
           "executor": "@nrwl/next:server",
           "options": {
             "buildTarget": "test-next:build",
-            "dev": true
+            "dev": true,
+            "commands": ["yarn gen:lite"],
+            "proxyConfig": "apps/test-next/proxy.conf.json"
           },
           "configurations": {
             "production": {
               "buildTarget": "test-next:build:production",
-              "dev": false
+              "dev": false,
+              "commands": []
             }
           }
         },
@@ -367,6 +382,25 @@
           "options": {
             "lintFilePatterns": ["apps/test-next/**/*.{ts,tsx,js,jsx}"]
           }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": { "configFolder": "apps/test-next/.storybook" }
+          },
+          "configurations": { "ci": { "quiet": true } }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/test-next",
+            "config": { "configFolder": "apps/test-next/.storybook" }
+          },
+          "configurations": { "ci": { "quiet": true } }
         }
       }
     },
@@ -389,6 +423,30 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": { "lintFilePatterns": ["apps/test-next-e2e/**/*.{js,ts}"] }
+        }
+      }
+    },
+    "client-lib-todos-e2e": {
+      "root": "apps/client-lib-todos-e2e",
+      "sourceRoot": "apps/client-lib-todos-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client-lib-todos-e2e/cypress.json",
+            "tsConfig": "apps/client-lib-todos-e2e/tsconfig.e2e.json",
+            "devServerTarget": "client-lib-todos:storybook"
+          },
+          "configurations": {
+            "ci": { "devServerTarget": "client-lib-todos:storybook:ci" }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/client-lib-todos-e2e/**/*.{js,ts}"]
+          }
         }
       }
     }

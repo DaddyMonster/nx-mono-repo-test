@@ -5,7 +5,10 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["apps/test-next/tsconfig(.*)?.json"]
+        "project": [
+          "apps/test-next/tsconfig(.*)?.json",
+          "apps\\test-next\\.storybook\\tsconfig.json"
+        ]
       },
       "rules": {}
     },

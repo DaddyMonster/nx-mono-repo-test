@@ -1,0 +1,6 @@
+query CheckConnection {
+  checkConnection {
+    connection
+    prefix
+  }
+}

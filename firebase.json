@@ -9,6 +9,13 @@
           "serviceId": "test-next",
           "region": "asia-northeast3"
         }
+      },
+      {
+        "source": "**/*",
+        "run": {
+          "serviceId": "test-nest",
+          "region": "asia-northeast3"
+        }
       }
     ]
   }
