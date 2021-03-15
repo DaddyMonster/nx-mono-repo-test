@@ -50,6 +50,7 @@ jobs:
           fetch-depth: 0
 
       - uses: google-github-actions/setup-gcloud@v0.2.0
+        if: needs.check_if_package_modified.outputs.modified == 'true'
         with:
           project_id: ${{ secrets.GC_PROJECT_ID }}
           service_account_key: ${{ secrets.GC_SERVICE_ACCOUNT }}
@@ -64,11 +65,11 @@ jobs:
       - name: Build and deploy Base-Docker-Img at root directory only when package.json has changed!
         if: needs.check_if_package_modified.outputs.modified == 'true'
         shell: bash
-        run: |-
-          chmod +x ./ci/base-img.sh
-          ./ci/bash-img.sh
+        run: chmod +x ./ci/base-img.sh
+        
       - name: roll up
-        run: echo DONE
+        if: needs.check_if_package_modified.outputs.modified == 'true'
+        run: ./ci/base-img.sh
   affected_build:
     name: build only affected apps
     needs: deploy_base_img
