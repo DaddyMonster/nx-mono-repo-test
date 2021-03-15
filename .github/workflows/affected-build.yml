@@ -49,9 +49,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: GC_AUTH
-        if: needs.check_if_package_modified.outputs.modified == 'true'
-        uses: ./.github/actions/gc-auth
+      - uses: google-github-actions/setup-gcloud@v0.2.0
+         with:
+          project_id: ${{ secrets.GC_PROJECT_ID }}
+          service_account_key: ${{ secrets.GC_SERVICE_ACCOUNT }} 
+          service_account_email: ${{ secrets.GC_SERVICE_ACCOUNT_EMAIL }}
+      - name: Enable the necessary APIs and enable docker auth
+        shell: bash
+        run: |-
+          gcloud services enable containerregistry.googleapis.com
+          gcloud services enable run.googleapis.com
+          gcloud --quiet auth configure-docker
 
       - name: Build and deploy Base-Docker-Img at root directory only when package.json has changed!
         if: needs.check_if_package_modified.outputs.modified == 'true'
@@ -80,8 +88,17 @@ jobs:
         run: npm install
 
       # GC_AUTH
-      - name: GC_AUTH
-        uses: ./.github/actions/gc-auth
+      - uses: google-github-actions/setup-gcloud@v0.2.0
+         with:
+          project_id: ${{ secrets.GC_PROJECT_ID }}
+          service_account_key: ${{ secrets.GC_SERVICE_ACCOUNT }} 
+          service_account_email: ${{ secrets.GC_SERVICE_ACCOUNT_EMAIL }}
+      - name: Enable the necessary APIs and enable docker auth
+        shell: bash
+        run: |-
+          gcloud services enable containerregistry.googleapis.com
+          gcloud services enable run.googleapis.com
+          gcloud --quiet auth configure-docker
 
       # 도커 사용 설정
 
