@@ -32,7 +32,8 @@ jobs:
       - name: Build and deploy Base-Docker-Img at root directory only when package.json has changed!
         if: needs.check_if_package_modified.check.outputs.files_changed == 'true'
         run: bash ./ci/base-img.sh
-
+      - name: roll up
+        run : echo DONE
   affected_build:
     name: build only affected apps
     needs: deploy_base_img
