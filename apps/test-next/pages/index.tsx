@@ -47,7 +47,7 @@ export function Index() {
       </div>
       <div className="w-full flex justify-center items-center">
       <Typography className="p-10 text-3xl font-guide">
-        {`CONNECTION TO SERVER : ${msg}`}
+        {`CONNECTION TO SERVER! : ${msg}`}
       </Typography>
       </div>
       <div className="w-full flex p-5 items-center justify-center">
