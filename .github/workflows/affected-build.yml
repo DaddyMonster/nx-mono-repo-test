@@ -60,9 +60,9 @@ jobs:
 
       - name: Install Dependencies
         if: steps.node-cache.outputs.cache-hit != 'true'
-        run: npm install
+        run: yarn install
 
       # Affected build
       - name: Run Affected Build and Deploy
         shell: bash
-        run: npm run affected:prod-build -- --base=$BEFORE_SHA
+        run: yarn run affected:prod-build -- --base=$BEFORE_SHA

@@ -8,7 +8,6 @@
 # dependencies
 /node_modules
 /.firebase
-yarn.lock
 
 # IDEs and editors
 /.idea
