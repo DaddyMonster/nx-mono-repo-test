@@ -22,4 +22,4 @@ WORKDIR /app
 COPY --from=dependencies /app/cache/node_modules ./node_modules
 COPY . .
 ENV NODE_ENV=$NODE_ENV
-CMD ["node", ".app/main.js"]
+CMD ["node", "main.js"]
