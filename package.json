@@ -1,6 +1,6 @@
 {
   "name": "nx-test",
-  "version": "0.0.425",
+  "version": "0.0.426",
   "license": "MIT",
   "scripts": {
     "nx": "nx",

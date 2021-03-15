@@ -39,12 +39,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: check_if_package_modified
     steps:
-      - uses: actions/checkout@v2
+      
       - name: display pwd
         run: echo $PWD
       - name: Package Modification logger
         run: echo ${{ needs.check_if_package_modified.outputs.modified }}
 
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
       - name: GC_AUTH
         if: needs.check_if_package_modified.outputs.modified == 'true'
         uses: ./.github/gc-auth
