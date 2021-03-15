@@ -82,7 +82,7 @@ jobs:
 
       # GC_AUTH
       - name: GC_AUTH
-        uses: ./.github/gc-auth
+        uses: ./.github/actions/gc-auth
 
       # 도커 사용 설정
       - name: Enable the necessary APIs and enable docker auth
