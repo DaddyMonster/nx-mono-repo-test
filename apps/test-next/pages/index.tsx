@@ -10,7 +10,7 @@ const mockItems: TodoItemProps[] = [
   { label: 'work', id: nanoid(), complete: false },
   { label: 'study', id: nanoid(), complete: false },
   { label: 'coding', id: nanoid(), complete: false },
-  { label: 'sleep', id: nanoid(), complete: false },
+  { label: 'sleeping', id: nanoid(), complete: false },
 ];
 
 export function Index() {
