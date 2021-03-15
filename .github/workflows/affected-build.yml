@@ -11,7 +11,7 @@ env:
   GC_REGION: ${{ secrets.GC_REGION }}
   GC_SERVICE_ACCOUNT: ${{ secrets.GC_SERVICE_ACCOUNT }}
   GC_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GC_SERVICE_ACCOUNT_EMAIL }}
-  NEST_SECRETS: ${{ secrets.TEST_NEST_SECRETS }}
+  TEST_NEST_SECRETS: ${{ secrets.TEST_NEST_SECRETS }}
   # gcr.io 리포 이름
 
 jobs:
@@ -54,7 +54,7 @@ jobs:
           cache-name: cache-node-modules
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
 

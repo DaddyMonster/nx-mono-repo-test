@@ -44,6 +44,7 @@ Thumbs.db
 .env.prod
 .env.production
 .env.development
+.prod-env
 
 #CREDENTIAL
 nx-test-db-cred.json
