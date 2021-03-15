@@ -7,7 +7,7 @@ export class ConnectionResolver {
   checkConnection(): ConnectionReturn {
     return {
       connection: true,
-      prefix: '/api/{graphql}',
+      prefix: 'path to /api/graphql has been connected!',
     };
   }
 }

@@ -2,7 +2,7 @@
 
 nx run test-nest:build --prod
 cd dist/apps/test-nest
-npx add-dependencies graphql reflect-metadata
+npx add-dependencies graphql reflect-metadata pg @nestjs/core @nestjs/platform-express apollo-server-express rxjs
 
 
 #ENVS
