@@ -17,7 +17,7 @@ echo ${GCR_PATH}
 
 
 cp ../../../apps/test-nest/test-nest.Dockerfile .
-docker build -t . $NEST_CONTAINER_NAME -f ./test-nest.Dockerfile
+docker build . -t $NEST_CONTAINER_NAME -f ./test-nest.Dockerfile
 docker tag $NEST_CONTAINER_NAME $GCR_PATH
 
 docker push $GCR_PATH
