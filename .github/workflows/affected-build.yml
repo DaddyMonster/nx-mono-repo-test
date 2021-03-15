@@ -44,10 +44,15 @@ jobs:
         run: echo $PWD
       - name: Package Modification logger
         run: echo ${{ needs.check_if_package_modified.outputs.modified }}
+
+      - name: GC_AUTH
+        if: needs.check_if_package_modified.outputs.modified == 'true'
+        uses: ./.github/gc-auth
+
       - name: Build and deploy Base-Docker-Img at root directory only when package.json has changed!
         if: needs.check_if_package_modified.outputs.modified == 'true'
         shell: bash
-        run: sudo ./ci/base-img.sh
+        run: ./ci/base-img.sh
       - name: roll up
         run: echo DONE
   affected_build:
@@ -72,11 +77,7 @@ jobs:
 
       # GC_AUTH
       - name: GC_AUTH
-        uses: google-github-actions/setup-gcloud@v0.2.0
-        with:
-          project_id: ${{ secrets.GC_PROJECT_ID }}
-          service_account_key: ${{ secrets.GC_SERVICE_ACCOUNT }}
-          service_account_email: ${{ secrets.GC_SERVICE_ACCOUNT_EMAIL }}
+        uses: ./.github/gc-auth
 
       # 도커 사용 설정
       - name: Enable the necessary APIs and enable docker auth
