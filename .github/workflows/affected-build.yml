@@ -62,7 +62,7 @@ jobs:
       - name: CREATE GC REGISTRY ACCESS TOKKEN
         id: access_tokken
         run: |-
-          gcloud auth print-access-token | ::set-output name=access_tokken::-stdin
+          gcloud auth print-access-token | "::set-output name=access_tokken::-stdin"
       
       - name: Enable the necessary APIs and enable docker auth
         shell: bash
