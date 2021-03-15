@@ -39,11 +39,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: check_if_package_modified
     steps:
+      - name: display pwd
+        run: echo $PWD
       - name: Package Modification logger
         run: echo ${{ needs.check_if_package_modified.outputs.modified }}
       - name: Build and deploy Base-Docker-Img at root directory only when package.json has changed!
         if: needs.check_if_package_modified.outputs.modified == 'true'
-        run: bash ./ci/base-img.sh
+        run: bash ci/base-img.sh
       - name: roll up
         run: echo DONE
   affected_build:
