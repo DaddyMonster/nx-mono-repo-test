@@ -1,4 +1,4 @@
-name: MONO REPO TEST RELEASE
+name: MONO REPO CI TEST
 on:
   push:
     branches:
