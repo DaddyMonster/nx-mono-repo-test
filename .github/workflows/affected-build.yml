@@ -25,7 +25,7 @@ jobs:
 
       - name: Log when changed
         if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
+        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}!"'
 
   deploy_base_img:
     name: Build and deloy base docker img with all dependencies pre-installed
