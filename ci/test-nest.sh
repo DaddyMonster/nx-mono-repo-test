@@ -26,4 +26,4 @@ docker push $GCR_PATH
 echo "NEST SERVER DOCKER IMAGE PUSHED TO REPO"
 gcloud components install beta --quiet
 
-gcloud beta run deploy $SERVICE --image $GCR_PATH --project $GC_PROJECT_ID --platform managed --region $REGION --allow-unauthenticated --update-env-vars $TEST_NEST_SECRETS
+gcloud run deploy $SERVICE --image $GCR_PATH --project $GC_PROJECT_ID --platform managed --region $REGION --allow-unauthenticated --update-env-vars $TEST_NEST_SECRETS
