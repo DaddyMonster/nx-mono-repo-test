@@ -42,12 +42,11 @@ jobs:
       - name: Package Modification logger
         run: echo ${{ needs.check_if_package_modified.outputs.modified }}
 
+      - run: chmod +x ./ci/base-img.sh
       - name: BUILD AND PUSH BASE DOCKER IMG
         shell: bash
         if: needs.check_if_package_modified.outputs.modified == 'true'
-        run: 
-          chmod +x ./ci/base-img.sh
-          bash-img.sh
+        run: ./ci/base-img.sh
 
       - name: roll up
         if: needs.check_if_package_modified.outputs.modified == 'true'
