@@ -52,7 +52,7 @@ jobs:
       
       - name: GC_AUTH
         if: needs.check_if_package_modified.outputs.modified == 'true'
-        uses: ./.github/gc-auth
+        uses: ./.github/actions/gc-auth
 
       - name: Build and deploy Base-Docker-Img at root directory only when package.json has changed!
         if: needs.check_if_package_modified.outputs.modified == 'true'
