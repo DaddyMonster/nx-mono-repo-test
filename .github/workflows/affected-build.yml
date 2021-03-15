@@ -18,8 +18,6 @@ jobs:
   affected_build:
     name: build only affected apps
     runs-on: ubuntu-latest
-    container:
-      image: engsparkapp/nx-test-base:latest
     steps:
       # Nx git diff 사용으로 affted 사용을 위한 git history fetching
       - name: Checkout
