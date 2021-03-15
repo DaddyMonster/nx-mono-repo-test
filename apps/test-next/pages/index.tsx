@@ -42,7 +42,7 @@ export function Index() {
     <div className="w-full h-screen">
       <div className="p-5 flex justify-center items-center">
         <Link href="/foo/bar">
-          <Button>NAV TO foo/bar BaZ</Button>
+          <Button>NAV TO foo/bar BaZ BeZ</Button>
         </Link>
       </div>
       <div className="w-full flex justify-center items-center">
