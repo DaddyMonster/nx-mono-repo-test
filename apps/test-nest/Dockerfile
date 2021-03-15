@@ -1,4 +1,4 @@
-FROM base-img:latest AS builder
+FROM engsparkapp/nx-test-base:latest AS builder
 
 ARG NODE_ENV
 ARG BUILD_FLAG
