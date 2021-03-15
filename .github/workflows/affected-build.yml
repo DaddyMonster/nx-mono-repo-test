@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: MontyD/package-json-updated-action
-      - id: check
+        id: check
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
