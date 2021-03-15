@@ -45,7 +45,7 @@ jobs:
       - name: BUILD AND PUSH BASE DOCKER IMG
         shell: bash
         if: needs.check_if_package_modified.outputs.modified == 'true'
-        run: |-
+        run: |
           chmod +x ./ci/base-img.sh
           ./ci/bash-img.sh
 
