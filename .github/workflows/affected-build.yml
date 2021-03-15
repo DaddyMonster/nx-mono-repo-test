@@ -19,7 +19,7 @@ jobs:
     name: Detact Package.json modification and rebuild base docker img
     runs-on: ubuntu-latest
     steps:
-      - uses: MontyD/package-json-updated-action@latest
+      - uses: MontyD/package-json-updated-action@1.0.1
         id: check
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
