@@ -1,20 +1,18 @@
+import { Button, ButtonProps } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
-import './buttons.css';
 
 /* eslint-disable-next-line */
-export interface ButtonsProps {}
+export interface ButtonsProps extends Omit<ButtonProps, 'color'> {
+  onMerge: () => void;
+}
 
-const StyledButtons = styled.div`
-  color: pink;
-`;
+const StyledButtons = styled(Button).attrs({
+  color: 'primary',
+})(({ theme }) => ({}));
 
 export function Buttons(props: ButtonsProps) {
-  return (
-    <StyledButtons className="btn">
-      <h1>Welcome to buttons!</h1>
-    </StyledButtons>
-  );
+  return <StyledButtons {...props}>BUTTON!</StyledButtons>;
 }
 
 export default Buttons;

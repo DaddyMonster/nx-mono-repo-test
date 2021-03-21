@@ -9,5 +9,6 @@ module.exports = {
     '<rootDir>/apps/test-srv',
     '<rootDir>/apps/test-nest',
     '<rootDir>/apps/test-next',
+    '<rootDir>/libs/apollo-next',
   ],
 };

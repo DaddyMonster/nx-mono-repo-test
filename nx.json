@@ -34,6 +34,11 @@
     "client-lib-todos-e2e": {
       "tags": [],
       "implicitDependencies": ["client-lib-todos"]
+    },
+    "apollo-next": { "tags": [] },
+    "client-lib-ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["client-lib-ui"]
     }
   }
 }

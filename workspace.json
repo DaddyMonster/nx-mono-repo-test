@@ -132,6 +132,25 @@
             "jestConfig": "libs/client-lib/ui/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": { "configFolder": "libs/client-lib/ui/.storybook" }
+          },
+          "configurations": { "ci": { "quiet": true } }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/client-lib-ui",
+            "config": { "configFolder": "libs/client-lib/ui/.storybook" }
+          },
+          "configurations": { "ci": { "quiet": true } }
         }
       }
     },
@@ -209,25 +228,6 @@
             "jestConfig": "libs/client-lib/todos/jest.config.js",
             "passWithNoTests": true
           }
-        },
-        "storybook": {
-          "executor": "@nrwl/storybook:storybook",
-          "options": {
-            "uiFramework": "@storybook/react",
-            "port": 4400,
-            "config": { "configFolder": "libs/client-lib/todos/.storybook" }
-          },
-          "configurations": { "ci": { "quiet": true } }
-        },
-        "build-storybook": {
-          "executor": "@nrwl/storybook:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/client-lib-todos",
-            "config": { "configFolder": "libs/client-lib/todos/.storybook" }
-          },
-          "configurations": { "ci": { "quiet": true } }
         }
       }
     },
@@ -382,25 +382,6 @@
           "options": {
             "lintFilePatterns": ["apps/test-next/**/*.{ts,tsx,js,jsx}"]
           }
-        },
-        "storybook": {
-          "executor": "@nrwl/storybook:storybook",
-          "options": {
-            "uiFramework": "@storybook/react",
-            "port": 4400,
-            "config": { "configFolder": "apps/test-next/.storybook" }
-          },
-          "configurations": { "ci": { "quiet": true } }
-        },
-        "build-storybook": {
-          "executor": "@nrwl/storybook:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "uiFramework": "@storybook/react",
-            "outputPath": "dist/storybook/test-next",
-            "config": { "configFolder": "apps/test-next/.storybook" }
-          },
-          "configurations": { "ci": { "quiet": true } }
         }
       }
     },
@@ -435,17 +416,59 @@
           "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/client-lib-todos-e2e/cypress.json",
-            "tsConfig": "apps/client-lib-todos-e2e/tsconfig.e2e.json",
-            "devServerTarget": "client-lib-todos:storybook"
+            "tsConfig": "apps/client-lib-todos-e2e/tsconfig.e2e.json"
           },
-          "configurations": {
-            "ci": { "devServerTarget": "client-lib-todos:storybook:ci" }
-          }
+          "configurations": {}
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/client-lib-todos-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "apollo-next": {
+      "root": "libs/apollo-next",
+      "sourceRoot": "libs/apollo-next/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/apollo-next/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/apollo-next"],
+          "options": {
+            "jestConfig": "libs/apollo-next/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "client-lib-ui-e2e": {
+      "root": "apps/client-lib-ui-e2e",
+      "sourceRoot": "apps/client-lib-ui-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client-lib-ui-e2e/cypress.json",
+            "tsConfig": "apps/client-lib-ui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "client-lib-ui:storybook"
+          },
+          "configurations": {
+            "ci": { "devServerTarget": "client-lib-ui:storybook:ci" }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/client-lib-ui-e2e/**/*.{js,ts}"]
           }
         }
       }
